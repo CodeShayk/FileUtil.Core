@@ -1,0 +1,9 @@
+language: csharp
+mono: none
+dotnet: 2.0.0
+solution: Ninja.FileUtil.Core.sln
+install:
+  - dotnet restore
+script:
+ - dotnet build
+ - dotnet test ./test/Ninja.FileUtil.Tests/Ninja.FileUtil.Tests.csproj
