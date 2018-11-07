@@ -1,4 +1,4 @@
-# FileUtil [![Build Status](https://travis-ci.org/NinjaRocks/FileUtil.svg?branch=master)](https://travis-ci.org/NinjaRocks/FileUtil) 
+# FileUtil [![Build Status](https://travis-ci.org/NinjaRocks/FileUtil.Core.svg?branch=master)](https://travis-ci.org/NinjaRocks/FileUtil.Core) 
 .Net Library to read from fixed width or delimiter separated file using strongly typed objects.
 
 
