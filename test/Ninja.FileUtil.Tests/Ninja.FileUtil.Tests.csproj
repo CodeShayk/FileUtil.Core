@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -14,6 +14,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Ninja.FileUtil\Ninja.FileUtil.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="TestFile.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
