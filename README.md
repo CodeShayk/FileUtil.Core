@@ -60,28 +60,25 @@ We can configure the parser and provider setting for FileUtil to override the de
 
 The below configuration shows the complete set of attributes required to parse a delimiter separated file with no header or footer rows.
 
-At a minimal you can specify the folder location `<provider folderPath="C:work"/>` where the source file will reside. You can override defaults as required.
+At a minimal you can specify the folder location `{"providerSettings":{ "folderPath":"C:work"}` where the source file will reside. You can override defaults as required.
 
 By default, the file is read using the default file system provider. You can pass in your own implementation of the provider > to custom read file from desired location. We will later show how you can acheive this.
 
 
-    <configuration>     
-	     <configSections>
-	     <sectionGroup name="FileUtil">
-	       <section name="Settings" type="Ninja.FileUtil.Configuration.Settings, Ninja.FileUtil" />
-	    </sectionGroup>
-	    </configSections>                    
-     <FileUtil>
-      <Settings>
-        <Parser  delimiter="|"/>
-        <Provider folderPath="C:work"
-                  fileNameFormat="File*.txt" archiveUponRead="true" archiveFolder="Archived"/>    
-      </Settings>
-     </FileUtil>     
-    </configuration>
+    {
+        "configSettings":{
+            "parserSettings":{ "delimiter":"|" },
+            "providerSettings":{
+                        "folderPath":"C:work",
+                        "fileNameFormat":"File*.txt",
+                        "archiveUponRead":"true",
+                        "archiveFolder":"Archived"
+            }
+	    }	
+    }	  
 
 
- The  `<Provider  fileNameFormat="File*.txt"/>` attribute (by default is empty) can
+ The  `"fileNameFormat":"File*.txt"` attribute (by default is empty) can
  be used to search the folder location for files with a specific name pattern.
  if not specified then all available files in the folder location will be searched.
  
@@ -122,7 +119,7 @@ FileLine base class has an index property that holds the index of the parsed lin
 Once you have created the line class it is as simple as calling the Engine.GetFile() method as follows
 
 >
-    `var files = new Engine<Employee>(Settings.GetSection()).GetFiles();`
+   `var files = new Engine<Employee>(configSettings).GetFiles();`
 
 The engine will parse the files found at the specified folder location and return a collection of 
  `File<Employee>` objects ie. one for each file parsed with an array of strongly typed lines (in this case Employee[]).
@@ -149,22 +146,24 @@ The engine will parse the files found at the specified folder location and retur
 
 The configuration is the same as before. We can override the default line heads by specifying the required line head attribute in the parser settings.
 
-
-    <configuration>     
-	     <configSections>
-	     <sectionGroup name="FileUtil">
-	       <section name="Settings" type="Ninja.FileUtil.Configuration.Settings, Ninja.FileUtil" />
-	    </sectionGroup>
-	    </configSections>                    
-     <FileUtil>
-      <Settings>
-        <Parser  delimiter="|" header="H" footer="F" data="D" />
-        <Provider folderPath="C:work"
-                  fileNameFormat="File*.txt" archiveUponRead="true" archiveFolder="Archived"/>    
-      </Settings>
-     </FileUtil>     
-    </configuration>
-
+```
+{
+    "configSettings":{
+        "parserSettings":{ 
+                    "delimiter":"|", 
+                    "header":"H", 
+                    "footer":"F", 
+                    "data":"D"  
+        },
+        "providerSettings":{
+                        "folderPath":"C:work",
+                        "fileNameFormat":"File*.txt",
+                        "archiveUponRead":"true",
+                        "archiveFolder":"Archived"
+        }		
+    }	  
+}
+```
 
 **Code** 
 -------------
@@ -190,7 +189,8 @@ We continue by creating two extra classes HeaderLine and FooterLine as follows.
 
 
 To parse the file you call the GetFiles() Method as follows -
-> `var files = new Engine<HeaderLine, Employee, Footer>(Settings.GetSection()).GetFiles();`
+> 
+`var files = new Engine<HeaderLine, Employee, Footer>(configSettings).GetFiles();`
 
 The engine will parse the files and return a collection of `File<HeaderLine, Employee, Footer>` objects 
 ie. one for each file parsed with strongly typed header, footer and data line arrays.
@@ -228,17 +228,10 @@ An example dummy implementation is as follows
 
 You can pass the custom provider to the engine as follows -
 
- `var files = new Engine<Employee>(Settings.GetSection(), new CustomProvider()).GetFiles();`
+ `var files = new Engine<Employee>(configSettings, new CustomProvider()).GetFiles();`
  
- `var files = new Engine<HeaderLine, Employee, Footer>(Settings.GetSection(), new CustomProvider()).GetFiles();`
+ `var files = new Engine<HeaderLine, Employee, Footer>(configSettings, new CustomProvider()).GetFiles();`
 
- Additionally, If you wish to provide custom configuration then you need to Implement IConfigSettings and pass the custom configuration instance to the engine.
-
- `CustomConfiguration: IConfigSettings {}`
-
- `var files = new Engine<Employee>(new CustomConfiguration(), new CustomProvider()).GetFiles();`
- 
- `var files = new Engine<HeaderLine, Employee, Footer>(new CustomConfiguration(), new CustomProvider()).GetFiles();`
 
 
 -------------
