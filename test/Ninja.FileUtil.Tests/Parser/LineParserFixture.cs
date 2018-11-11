@@ -1,6 +1,7 @@
 ﻿using Moq;
 using Ninja.FileUtil.Configuration;
 using Ninja.FileUtil.Parser.Impl;
+using Ninja.FileUtil.Tests.Configuration;
 using NUnit.Framework;
 
 namespace Ninja.FileUtil.Tests.Parser
@@ -9,14 +10,17 @@ namespace Ninja.FileUtil.Tests.Parser
     class LineParserFixture
     {
          private Mock<IParserSettings> configuration;
+         private Mock<IDelimiter> delimiter;
          private LineParser parser;
 
          [SetUp]
          public void Setup()
          {
              configuration = new Mock<IParserSettings>();
-             configuration.Setup(x => x.Delimiter).Returns('|');
-             parser = new LineParser(configuration.Object);
+             delimiter = new Mock<IDelimiter>();
+             configuration.Setup(x => x.Delimiter).Returns(delimiter.Object);
+             delimiter.Setup(x => x.Value).Returns('|');
+             parser = new LineParser(delimiter.Object);
          }
 
          [Test]
@@ -78,7 +82,7 @@ namespace Ninja.FileUtil.Tests.Parser
          [TestCase("H|hbtrb|ej ef|fer|rc |", true)]
          public void TestParseForInvalidInputShouldReturnError(string line, bool hasLineType)
          {
-             if (!hasLineType) parser = new LineParser(new TestFullConfig('|'));
+             if (!hasLineType) parser = new LineParser(new TestFullConfig('|').Delimiter);
 
              var result = hasLineType
                  ? parser.ParseWithNoLineType<TestLine>(new[] {line})
@@ -100,31 +104,4 @@ namespace Ninja.FileUtil.Tests.Parser
             Assert.IsNotEmpty(result[0].Errors);
         }
     }
-
-    public class TestSimpleConfig : IDelimiter
-    {
-        public TestSimpleConfig(char delimeter)
-        {
-            Delimiter = delimeter;
-        }
-
-        public char Delimiter { get; set; }
-    }
-
-    public class TestFullConfig : IParserSettings
-    {
-        public TestFullConfig(char delimeter)
-        {
-            Delimiter = delimeter;
-            Header = "H";
-            Footer = "F";
-            Data = "D";
-        }
-
-        public char Delimiter { get; set; }
-        public string Header { get; set; }
-        public string Footer { get; set; }
-        public string Data { get; set; }
-    }
-    
 }

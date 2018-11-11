@@ -23,7 +23,7 @@ namespace Ninja.FileUtil
         /// <param name="parserSettings">Parser setting instance.</param>
         /// <param name="fileProvider">File provider instance.</param>
         public Engine(IParserSettings parserSettings, IFileProvider fileProvider)
-            : this(fileProvider, new LineParser(parserSettings))
+            : this(fileProvider, new LineParser(parserSettings.Delimiter))
         {
 
         }
@@ -86,7 +86,7 @@ namespace Ninja.FileUtil
         /// <param name="parserSettings">Parser setting instance.</param>
         /// <param name="fileProvider">File provider instance.</param>
         public Engine(IParserSettings parserSettings, IFileProvider fileProvider)
-            : this(fileProvider, new LineParser(parserSettings))
+            : this(fileProvider, new LineParser(parserSettings.Delimiter))
         {
             this.parserSettings  = parserSettings;
         }
@@ -134,9 +134,9 @@ namespace Ninja.FileUtil
                         Lines = file.Lines,
                     },
 
-                    Headers = lineParser.ParseWithLineType<TH>(file.Lines.Where(x => x.StartsWith(parserSettings.Header)).ToArray(), LineType.Header),
-                    Footers = lineParser.ParseWithLineType<TF>(file.Lines.Where(x => x.StartsWith(parserSettings.Footer)).ToArray(), LineType.Footer),
-                    Data = lineParser.ParseWithLineType<TD>(file.Lines.Where(x => x.StartsWith(parserSettings.Data)).ToArray(), LineType.Data)
+                    Headers = lineParser.ParseWithLineType<TH>(file.Lines.Where(x => x.StartsWith(parserSettings.LineHeaders.Header)).ToArray(), LineType.Header),
+                    Footers = lineParser.ParseWithLineType<TF>(file.Lines.Where(x => x.StartsWith(parserSettings.LineHeaders.Footer)).ToArray(), LineType.Footer),
+                    Data = lineParser.ParseWithLineType<TD>(file.Lines.Where(x => x.StartsWith(parserSettings.LineHeaders.Data)).ToArray(), LineType.Data)
                 };
 
                 return parsed;

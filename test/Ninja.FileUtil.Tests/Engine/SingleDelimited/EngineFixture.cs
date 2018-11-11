@@ -10,6 +10,7 @@ namespace Ninja.FileUtil.Tests.Engine.SingleDelimited
     {
         private Mock<IFileProvider> provider;
         private Mock<IParserSettings> configuration;
+        private Mock<IDelimiter> delimiter;
         private Engine<SingleLine> engine;
 
         [SetUp]
@@ -17,7 +18,9 @@ namespace Ninja.FileUtil.Tests.Engine.SingleDelimited
         {
             provider = new Mock<IFileProvider>();
             configuration = new Mock<IParserSettings>();
-            configuration.Setup(x => x.Delimiter).Returns('|');
+            delimiter = new Mock<IDelimiter>();
+            delimiter.Setup(x => x.Value).Returns('|');
+            configuration.Setup(x => x.Delimiter).Returns(delimiter.Object);
             engine = new Engine<SingleLine>(configuration.Object, provider.Object);
         }
 

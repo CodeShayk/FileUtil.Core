@@ -2,6 +2,34 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <RepositoryType>Public</RepositoryType>
+    <RepositoryUrl>https://github.com/NinjaRocks/FileUtil.Core</RepositoryUrl>
+    <PackageTags>csv parser, fixed width file, Delimiter separated file, c# parser, comma separated CSV parser</PackageTags>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>.Net Library to read from fixed width or delimiter separated file using strongly typed objects.
+
+What is Fixed width or Delimiter separated text files?
+Fixed width or Delimiter separeted text file is a file that has a specific format which allows for the manipulation of textual information in an organized fashion. Each row contains one record of information; each record can contain multiple pieces of data fields or columns. The data columns are separated by any character you specify called the delimiter. All rows in the file follow a consistent format and should be with the same number of data columns. Data columns could be empty with no value.
+
+CASE 1 : Simple pipe '|' separated Delimeter File is shown below (this could even be comma ',' separated CSV)
+
+|Mr|Jack Marias|Male|London|Active|||
+|Dr|Bony Stringer|Male|New Jersey|Active||Paid|
+|Mrs|Mary Ward|Female||Active|||
+|Mr|Robert Webb|||Active|||
+
+CASE 2: The above file could have a header and a footer. In which case, each row has an identifier called as Line head to determine the type of row in the file.
+
+|H|Department|Jun 23 2016  7:01PM|
+|D||Jack Marias|Male|London|Active|||
+|D|Dr|Bony Stringer|Male|New Jersey|Active||Paid|
+|D|Mrs|Mary Ward|Female||Active|||
+|D|Mr|Robert Webb|||Active|||
+|F|4 Records|
+
+FileUtil can be used to parse both of the shown formats above. The line heads and data column delimiters (separators) are configurable as required per use case.</Description>
+    <PackageLicenseUrl>https://github.com/NinjaRocks/FileUtil.Core/blob/master/License.md</PackageLicenseUrl>
   </PropertyGroup>
 
 </Project>

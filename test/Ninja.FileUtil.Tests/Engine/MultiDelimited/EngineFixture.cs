@@ -11,6 +11,7 @@ namespace Ninja.FileUtil.Tests.Engine.MultiDelimited
     {
         private Mock<IFileProvider> provider;
         private Mock<IParserSettings> configuration;
+        private Mock<IDelimiter> delimiter;
         private Engine<HeaderLine, DataLine, FooterLine> engine;
 
         [SetUp]
@@ -18,11 +19,12 @@ namespace Ninja.FileUtil.Tests.Engine.MultiDelimited
         {
             provider = new Mock<IFileProvider>();
             configuration = new Mock<IParserSettings>();
-
-            configuration.Setup(x => x.Delimiter).Returns('|');
-            configuration.Setup(x => x.Header).Returns("H");
-            configuration.Setup(x => x.Data).Returns("D");
-            configuration.Setup(x => x.Footer).Returns("F");
+            delimiter = new Mock<IDelimiter>();
+            delimiter.Setup(x => x.Value).Returns('|');
+            configuration.Setup(x => x.Delimiter).Returns(delimiter.Object);
+            configuration.Setup(x => x.LineHeaders.Header).Returns("H");
+            configuration.Setup(x => x.LineHeaders.Data).Returns("D");
+            configuration.Setup(x => x.LineHeaders.Footer).Returns("F");
 
             engine = new Engine<HeaderLine, DataLine, FooterLine>(configuration.Object, provider.Object);
         }

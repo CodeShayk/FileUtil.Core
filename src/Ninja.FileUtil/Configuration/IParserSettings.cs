@@ -1,9 +1,8 @@
 namespace Ninja.FileUtil.Configuration
 {
-    public interface IParserSettings: IDelimiter
+    public interface IParserSettings
     {
-        string Header { get; set; }
-        string Footer { get; set; }
-        string Data { get; set; }
+        IDelimiter Delimiter { get; set; }
+        ILineHeaders LineHeaders { get; set; }
     }
 }
