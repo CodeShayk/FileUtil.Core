@@ -9,12 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{41
 		.gitignore = .gitignore
 		.travis.yml = .travis.yml
 		License.md = License.md
+		ms-icon-310x310.png = ms-icon-310x310.png
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ninja.FileUtil", "src\Ninja.FileUtil\Ninja.FileUtil.csproj", "{FD920B11-BA4F-4781-BD56-56CF362982CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ninja.FileUtil", "src\Ninja.FileUtil\Ninja.FileUtil.csproj", "{FD920B11-BA4F-4781-BD56-56CF362982CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ninja.FileUtil.Tests", "test\Ninja.FileUtil.Tests\Ninja.FileUtil.Tests.csproj", "{95A1410C-6FB4-446D-A692-9BC018882298}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ninja.FileUtil.Tests", "test\Ninja.FileUtil.Tests\Ninja.FileUtil.Tests.csproj", "{95A1410C-6FB4-446D-A692-9BC018882298}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
