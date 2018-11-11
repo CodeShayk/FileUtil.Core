@@ -52,16 +52,16 @@ In which case, each row has an identifier called as Line head to determine the t
 <p>By default, the file is read using the default file system provider. You can pass in your own implementation of the provider &gt; to custom read file from desired location. We will later show how you can acheive this.</p>
 <pre><code>{
     &quot;configSettings&quot;:{
-        &quot;parserSettings&quot;:{ &quot;delimiter&quot;:&quot;|&quot; },
-        &quot;providerSettings&quot;:{
-                    &quot;folderPath&quot;:&quot;C:work&quot;,
-                    &quot;fileNameFormat&quot;:&quot;File*.txt&quot;,
-                    &quot;archiveUponRead&quot;:&quot;true&quot;,
-                    &quot;archiveFolder&quot;:&quot;Archived&quot;
-        }
-    }	
-}	  
+        &quot;parserSettings&quot;: { &quot;delimiter&quot;:{ &quot;value&quot;:&quot;|&quot;} },
+        &quot;providerSettings&quot;: {
+                &quot;folderPath&quot;:&quot;C:work&quot;,
+                &quot;fileNameFormat&quot;:&quot;File*.txt&quot;,
+                &quot;archiveUponRead&quot;:&quot;true&quot;,
+                &quot;archiveFolder&quot;:&quot;Archived&quot;
+    }
+}	
 </code></pre>
+<p>}</p>
 <p>The  <code>&quot;fileNameFormat&quot;:&quot;File*.txt&quot;</code> attribute (by default is empty) can
 be used to search the folder location for files with a specific name pattern.
 if not specified then all available files in the folder location will be searched.</p>
@@ -99,6 +99,19 @@ By doing this you create a strongly typed line representation for each row in th
 <p><code>var files = new Engine&lt;Employee&gt;(configSettings).GetFiles();</code></p>
 <p>The engine will parse the files found at the specified folder location and return a collection of
 <code>File&lt;Employee&gt;</code> objects ie. one for each file parsed with an array of strongly typed lines (in this case Employee[]).</p>
+<pre><code>public class File&lt;T&gt; where T: FileLine
+    {
+        /// &lt;summary&gt;
+        /// File meta data.
+        /// &lt;/summary&gt;
+        public FileMeta FileMeta { get; set; }
+        /// &lt;summary&gt;
+        /// Strongly typed parsed lines.
+        /// &lt;/summary&gt;
+        public T[] Data { get; set; }
+       
+    }
+</code></pre>
 <hr />
 <h2 id="case-2-let-us-see-how-we-can-parse-a-delimiter-separted-file-with-header-and-footer-rows"><strong>Case 2:</strong> Let us see how we can parse a delimiter separted file with header and footer rows.</h2>
 <p><strong>Note:</strong> This file will have rows with line head to determine each row type. By default, the line heads are 'H' for header, 'D' for data and 'F' for footer respectively. all these line heads are configurable via the config.</p>
@@ -117,11 +130,12 @@ By doing this you create a strongly typed line representation for each row in th
 <p>The configuration is the same as before. We can override the default line heads by specifying the required line head attribute in the parser settings.</p>
 <pre><code>{
     &quot;configSettings&quot;:{
-        &quot;parserSettings&quot;:{ 
-                    &quot;delimiter&quot;:&quot;|&quot;, 
-                    &quot;header&quot;:&quot;H&quot;, 
-                    &quot;footer&quot;:&quot;F&quot;, 
-                    &quot;data&quot;:&quot;D&quot;  
+        &quot;parserSettings&quot;:{ &quot;delimiter&quot;: { &quot;value&quot;:&quot;|&quot;} ,
+                           &quot;lineHeaders&quot;: { 
+                                &quot;header&quot;:&quot;H&quot;, 
+                                &quot;footer&quot;:&quot;F&quot;, 
+                                &quot;data&quot;:&quot;D&quot; 
+                            }
         },
         &quot;providerSettings&quot;:{
                         &quot;folderPath&quot;:&quot;C:work&quot;,
@@ -182,6 +196,27 @@ ie. one for each file parsed with strongly typed header, footer and data line ar
 <p>You can pass the custom provider to the engine as follows -</p>
 <p><code>var files = new Engine&lt;Employee&gt;(configSettings, new CustomProvider()).GetFiles();</code></p>
 <p><code>var files = new Engine&lt;HeaderLine, Employee, Footer&gt;(configSettings, new CustomProvider()).GetFiles();</code></p>
+<p>Returns</p>
+<pre><code>public class File&lt;TH, TD, TF&gt; 
+    {
+        /// &lt;summary&gt;
+        /// File meta data.
+        /// &lt;/summary&gt;
+        public FileMeta FileMeta { get; set; }
+        /// &lt;summary&gt;
+        /// Parsed header lines.
+        /// &lt;/summary&gt;
+        public TH[] Headers { get; set; }
+        /// &lt;summary&gt;
+        /// Parsed data lines.
+        /// &lt;/summary&gt;
+        public TD[] Data { get; set; }
+        /// &lt;summary&gt;
+        /// Parsed footer lines.
+        /// &lt;/summary&gt;
+        public TF[] Footers { get; set; }
+    }
+</code></pre>
 <hr />
 <h2 id="credits"><strong>Credits</strong></h2>
 <p>Thank you for reading. Please fork, explore, contribute and report. Happy Coding !! :)</p>

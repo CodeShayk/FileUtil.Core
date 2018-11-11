@@ -11,11 +11,11 @@ namespace Ninja.FileUtil.Parser.Impl
 {
     internal class LineParser : ILineParser
     {
-        private readonly IDelimiter configuration;
+        private readonly IDelimiter delimiter;
 
-        public LineParser(IDelimiter configuration)
+        public LineParser(IDelimiter delimiter)
         {
-            this.configuration = configuration;
+            this.delimiter = delimiter;
         }
 
         public T[] ParseWithNoLineType<T>(string[] lines) where T : IFileLine, new()
@@ -147,7 +147,7 @@ namespace Ninja.FileUtil.Parser.Impl
 
         private string[] GetDelimiterSeparatedValues(string line)
         {
-            var values = line.Split(configuration.Value)
+            var values = line.Split(delimiter.GetValue())
                 .Select(x => !string.IsNullOrWhiteSpace(x)? x.Trim(): x)
                 .ToArray();
             return values;

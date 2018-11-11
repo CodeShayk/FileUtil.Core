@@ -134,9 +134,9 @@ namespace Ninja.FileUtil
                         Lines = file.Lines,
                     },
 
-                    Headers = lineParser.ParseWithLineType<TH>(file.Lines.Where(x => x.StartsWith(parserSettings.LineHeaders.Header)).ToArray(), LineType.Header),
-                    Footers = lineParser.ParseWithLineType<TF>(file.Lines.Where(x => x.StartsWith(parserSettings.LineHeaders.Footer)).ToArray(), LineType.Footer),
-                    Data = lineParser.ParseWithLineType<TD>(file.Lines.Where(x => x.StartsWith(parserSettings.LineHeaders.Data)).ToArray(), LineType.Data)
+                    Headers = lineParser.ParseWithLineType<TH>(file.Lines.Where(x => x.StartsWith(parserSettings.LineHeaders.GetHeaderValue())).ToArray(), LineType.Header),
+                    Footers = lineParser.ParseWithLineType<TF>(file.Lines.Where(x => x.StartsWith(parserSettings.LineHeaders.GetFooterValue())).ToArray(), LineType.Footer),
+                    Data = lineParser.ParseWithLineType<TD>(file.Lines.Where(x => x.StartsWith(parserSettings.LineHeaders.GetDataValue())).ToArray(), LineType.Data)
                 };
 
                 return parsed;

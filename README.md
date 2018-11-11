@@ -67,15 +67,15 @@ By default, the file is read using the default file system provider. You can pas
 
     {
         "configSettings":{
-            "parserSettings":{ "delimiter":"|" },
-            "providerSettings":{
-                        "folderPath":"C:work",
-                        "fileNameFormat":"File*.txt",
-                        "archiveUponRead":"true",
-                        "archiveFolder":"Archived"
-            }
-	    }	
-    }	  
+            "parserSettings": { "delimiter":{ "value":"|"} },
+            "providerSettings": {
+                    "folderPath":"C:work",
+                    "fileNameFormat":"File*.txt",
+                    "archiveUponRead":"true",
+                    "archiveFolder":"Archived"
+        }
+    }	
+}	  
 
 
  The  `"fileNameFormat":"File*.txt"` attribute (by default is empty) can
@@ -124,6 +124,20 @@ Once you have created the line class it is as simple as calling the Engine.GetFi
 The engine will parse the files found at the specified folder location and return a collection of 
  `File<Employee>` objects ie. one for each file parsed with an array of strongly typed lines (in this case Employee[]).
 
+```
+public class File<T> where T: FileLine
+    {
+        /// <summary>
+        /// File meta data.
+        /// </summary>
+        public FileMeta FileMeta { get; set; }
+        /// <summary>
+        /// Strongly typed parsed lines.
+        /// </summary>
+        public T[] Data { get; set; }
+       
+    }
+```
 
 -------------
 
@@ -149,11 +163,12 @@ The configuration is the same as before. We can override the default line heads 
 ```
 {
     "configSettings":{
-        "parserSettings":{ 
-                    "delimiter":"|", 
-                    "header":"H", 
-                    "footer":"F", 
-                    "data":"D"  
+        "parserSettings":{ "delimiter": { "value":"|"} ,
+                           "lineHeaders": { 
+                                "header":"H", 
+                                "footer":"F", 
+                                "data":"D" 
+                            }
         },
         "providerSettings":{
                         "folderPath":"C:work",
@@ -232,7 +247,28 @@ You can pass the custom provider to the engine as follows -
  
  `var files = new Engine<HeaderLine, Employee, Footer>(configSettings, new CustomProvider()).GetFiles();`
 
-
+Returns
+```
+public class File<TH, TD, TF> 
+    {
+        /// <summary>
+        /// File meta data.
+        /// </summary>
+        public FileMeta FileMeta { get; set; }
+        /// <summary>
+        /// Parsed header lines.
+        /// </summary>
+        public TH[] Headers { get; set; }
+        /// <summary>
+        /// Parsed data lines.
+        /// </summary>
+        public TD[] Data { get; set; }
+        /// <summary>
+        /// Parsed footer lines.
+        /// </summary>
+        public TF[] Footers { get; set; }
+    }
+```
 
 -------------
 
