@@ -1,5 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RepositoryType>Public</RepositoryType>
@@ -17,7 +16,6 @@ Example: pipe delimited, csv, etc.</Description>
     <Product>Fixed Width File Parser</Product>
     <PackageProjectUrl>https://github.com/NinjaRocks/FileUtil.Core</PackageProjectUrl>
     <PackageIconUrl>https://1drv.ms/u/s!Aq_ncig7TU4551b5fzxOad-pDMfL</PackageIconUrl>
-    <Version>1.0.2</Version>
+    <Version>1.0.4</Version>
   </PropertyGroup>
-
 </Project>
