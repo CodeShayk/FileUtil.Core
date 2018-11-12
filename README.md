@@ -1,4 +1,4 @@
-# FileUtil [![Build Status](https://travis-ci.org/NinjaRocks/FileUtil.Core.svg?branch=master)](https://travis-ci.org/NinjaRocks/FileUtil.Core) [![NuGet version](https://badge.fury.io/nu/FixedWidth.FileParser.svg)](https://www.nuget.org/packages/FixedWidth.FileParser)
+# FileUtil [![Build Status](https://travis-ci.org/NinjaRocks/FileUtil.Core.svg?branch=master)](https://travis-ci.org/NinjaRocks/FileUtil.Core) [![NuGet version](https://badge.fury.io/nu/FixedWidth.FileParser.svg)](https://badge.fury.io/nu/FixedWidth.FileParser)
 .Net Library to read from fixed width or delimiter separated file using strongly typed objects.
 
 
