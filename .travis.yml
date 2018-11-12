@@ -11,11 +11,10 @@ script:
 deploy:
   skip_cleanup: true
   provider: script
-  script: dotnet nuget push src/Ninja.FileUtil/bin/Release/FixedWidth.FileParser.*.nupkg
-    --api-key $NUGET_API_KEY
+  script: dotnet nuget push src/Ninja.FileUtil/bin/Release/FixedWidth.FileParser.*.nupkg --api-key $NUGET_API_KEY
   on:
     tags: true
-    condition: "$TRAVIS_TAG =~ ^(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)$"
+    condition: "$TRAVIS_TAG =~ ^[0-9]+\.[0-9]+\.[0-9]+"
 env:
   global:
     secure: VFpf55Un2xnytcL+oTEjWFlvNw+CICnJBAJGcgDIBRFizmQ4YUymCMP5PdTEEjmoIqvb3jWua5F7ANgMjUI9cWEjBtUM7Ko5P7ctOtEznrvg26gS0Uhv62zgzNBZTRd4NukHAFVsD106QQZYJp6jBvCwtaRkeCUmSFe/gRyzViReZp5H0WYDBTJyU7fh06pEAOjKs5s//TdmUdi+DQ76s6+z7c/mFDB0+ozrBuJ9dBbPhyb5Tt+dYeJkVteongShG9Sd2WXw1CYC/0/QsqlWo1P2vEIZT2FKIbZ+JiI40TitUyBCel5DPP3owG2krpzG0IZOentFQ8ui2SeNkQt8B/y/QkOh6bnGSLce3FZsR3idgjm6IfeyEe6KS6exG6yDBpye1+Xhlu5LaXEeMoz+YGvfAyTLGXWFUpcWfBN1xaA1RMK9NE9txoeky+iKZ5MZisBiACOZtA4x50l+Kqj3dCHTNWF4CrrLxLR1pc6CqFC+LuARThBJDJ8X11uSHhLvaY9DOd7VW2o7JrkTSLYuvjuJn4Ta3zQfaBAK85/tuPWNcrvvBSokMSbR5XRY8iD+xf/2Fl/mlbfWox+R+mXJt+st0nbTFDL5XGanprM/xdu5GfypjfwKqKBGY6dSLS87Br0SS6hneN7Ev3UXLQa3hkAmebjo77JhghyossLMOJo=
