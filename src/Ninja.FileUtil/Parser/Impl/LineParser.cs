@@ -6,33 +6,33 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Ninja.FileUtil.Configuration;
 
-
 namespace Ninja.FileUtil.Parser.Impl
 {
     internal class LineParser : ILineParser
     {
-        private readonly IDelimiter delimiter;
+        private readonly IParserSettings parserSettings;
 
-        public LineParser(IDelimiter delimiter)
+        public LineParser(IParserSettings parserSettings)
         {
-            this.delimiter = delimiter;
+            this.parserSettings = parserSettings;
         }
 
-        public T[] ParseWithNoLineType<T>(string[] lines) where T : IFileLine, new()
+        public T[] Parse<T>(string[] lines) where T : IFileLine, new()
         {
             return Parse<T>(lines, LineType.Data, false);
-
         }
 
-        public T[] ParseWithLineType<T>(string[] lines, LineType type) where T : IFileLine, new()
+        public T[] Parse<T>(string[] lines, LineType type) where T : IFileLine, new()
         {
-            return Parse<T>(lines, type, true);
+            var filteredLines = lines?.Where(x => x.StartsWith(parserSettings.LineHeaders.GetLineHead(type))).ToArray();
+            return Parse<T>(filteredLines, type, true);
         }
 
         private T[] Parse<T>(string[] lines, LineType type, bool hasLineHeader) where T : IFileLine, new()
         {
            
-            if (lines == null || lines.Length == 0) return Enumerable.Empty<T>().ToArray();
+            if (lines == null || lines.Length == 0)
+                return Enumerable.Empty<T>().ToArray();
 
             var list = new T[lines.Length];
 
@@ -147,7 +147,7 @@ namespace Ninja.FileUtil.Parser.Impl
 
         private string[] GetDelimiterSeparatedValues(string line)
         {
-            var values = line.Split(delimiter.GetValue())
+            var values = line.Split(parserSettings.Delimiter.GetValue())
                 .Select(x => !string.IsNullOrWhiteSpace(x)? x.Trim(): x)
                 .ToArray();
             return values;

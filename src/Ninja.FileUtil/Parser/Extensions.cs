@@ -23,17 +23,17 @@ namespace Ninja.FileUtil.Parser
             return delimiter?.Value ?? ',';
         }
 
-        public static string GetHeaderValue(this ILineHeaders lineHeaders)
+        public static string GetLineHead(this ILineHeaders lineHeaders, LineType type)
         {
-            return lineHeaders?.Header ?? "H";
-        }
-        public static string GetFooterValue(this ILineHeaders lineHeaders)
-        {
-            return lineHeaders?.Footer ?? "F";
-        }
-        public static string GetDataValue(this ILineHeaders lineHeaders)
-        {
-            return lineHeaders?.Data ?? "D";
+            switch (type)
+            {
+                case LineType.Header:
+                    return lineHeaders?.Header ?? "H";
+                case LineType.Footer:
+                    return lineHeaders?.Footer ?? "F";
+                default:
+                        return lineHeaders?.Data ?? "D";
+            }
         }
     }
 }

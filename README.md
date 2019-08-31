@@ -119,7 +119,7 @@ FileLine base class has an index property that holds the index of the parsed lin
 Once you have created the line class it is as simple as calling the Engine.GetFile() method as follows
 
 >
-   `var files = new Engine<Employee>(configSettings).GetFiles();`
+   `var files = new Engine(configSettings).GetFiles<Employee>();`
 
 The engine will parse the files found at the specified folder location and return a collection of 
  `File<Employee>` objects ie. one for each file parsed with an array of strongly typed lines (in this case Employee[]).
@@ -188,7 +188,7 @@ ie one for the header, footer and data line respectively.
 
 We continue by creating two extra classes HeaderLine and FooterLine as follows.
 
-     public class HeaderLine : FileLine
+     public class Header : FileLine
         {
             [Column(0)]
             public string Name { get; set; }
@@ -205,9 +205,9 @@ We continue by creating two extra classes HeaderLine and FooterLine as follows.
 
 To parse the file you call the GetFiles() Method as follows -
 > 
-`var files = new Engine<HeaderLine, Employee, Footer>(configSettings).GetFiles();`
+`var files = new Engine(configSettings).GetFiles<Header, Employee, Footer>();`
 
-The engine will parse the files and return a collection of `File<HeaderLine, Employee, Footer>` objects 
+The engine will parse the files and return a collection of `File<Header, Employee, Footer>` objects 
 ie. one for each file parsed with strongly typed header, footer and data line arrays.
 
 
@@ -243,9 +243,9 @@ An example dummy implementation is as follows
 
 You can pass the custom provider to the engine as follows -
 
- `var files = new Engine<Employee>(configSettings, new CustomProvider()).GetFiles();`
+ `var files = new Engine(configSettings, new CustomProvider()).GetFiles<Employee>();`
  
- `var files = new Engine<HeaderLine, Employee, Footer>(configSettings, new CustomProvider()).GetFiles();`
+ `var files = new Engine(configSettings, new CustomProvider()).GetFiles<Header, Employee, Footer>();`
 
 Returns
 ```
@@ -258,15 +258,15 @@ public class File<TH, TD, TF>
         /// <summary>
         /// Parsed header lines.
         /// </summary>
-        public TH[] Headers { get; set; }
+        public TH Header { get; set; }
         /// <summary>
         /// Parsed data lines.
         /// </summary>
         public TD[] Data { get; set; }
         /// <summary>
-        /// Parsed footer lines.
+        /// Parsed footer line.
         /// </summary>
-        public TF[] Footers { get; set; }
+        public TF Footer { get; set; }
     }
 ```
 

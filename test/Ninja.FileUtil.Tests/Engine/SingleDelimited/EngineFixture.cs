@@ -11,7 +11,7 @@ namespace Ninja.FileUtil.Tests.Engine.SingleDelimited
         private Mock<IFileProvider> provider;
         private Mock<IParserSettings> configuration;
         private Mock<IDelimiter> delimiter;
-        private Engine<SingleLine> engine;
+        private FileUtil.Engine engine;
 
         [SetUp]
         public void Setup()
@@ -21,13 +21,13 @@ namespace Ninja.FileUtil.Tests.Engine.SingleDelimited
             delimiter = new Mock<IDelimiter>();
             delimiter.Setup(x => x.Value).Returns('|');
             configuration.Setup(x => x.Delimiter).Returns(delimiter.Object);
-            engine = new Engine<SingleLine>(configuration.Object, provider.Object);
+            engine = new FileUtil.Engine(configuration.Object, provider.Object);
         }
 
         [Test]
         public void TestGetFilesForNoFileFromProviderShouldReturnEmptyCollection()
         {
-           Assert.IsEmpty(engine.GetFiles());
+           Assert.IsEmpty(engine.GetFiles<SingleLine>());
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace Ninja.FileUtil.Tests.Engine.SingleDelimited
 
             provider.Setup(x => x.GetFiles()).Returns(new[] { fileMeta });
 
-            var parsedfiles = engine.GetFiles();
+            var parsedfiles = engine.GetFiles<SingleLine>();
 
             Assert.IsNotEmpty(parsedfiles);
             Assert.That(parsedfiles[0].FileMeta.FileName, Is.EqualTo(fileMeta.FileName));
@@ -69,7 +69,6 @@ namespace Ninja.FileUtil.Tests.Engine.SingleDelimited
 
             Assert.That(parsedfiles[0].Data[1].Name, Is.EqualTo("Samuel Dias"));
             Assert.That(parsedfiles[0].Data[1].IsMember, Is.EqualTo(true));
-           
         }
     }
 }
