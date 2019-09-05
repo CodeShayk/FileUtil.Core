@@ -1,7 +1,6 @@
 ﻿using Moq;
 using Ninja.FileUtil.Configuration;
 using Ninja.FileUtil.Parser.Impl;
-using Ninja.FileUtil.Tests.Configuration;
 using NUnit.Framework;
 
 namespace Ninja.FileUtil.Tests.Parser
@@ -10,24 +9,25 @@ namespace Ninja.FileUtil.Tests.Parser
     class LineParserFixture
     {
          private Mock<IParserSettings> configuration;
-         private Mock<IDelimiter> delimiter;
          private LineParser parser;
 
          [SetUp]
          public void Setup()
          {
              configuration = new Mock<IParserSettings>();
-             delimiter = new Mock<IDelimiter>();
-             configuration.Setup(x => x.Delimiter).Returns(delimiter.Object);
-             delimiter.Setup(x => x.Value).Returns('|');
-             parser = new LineParser(delimiter.Object);
+            
+             configuration.Setup(x => x.Delimiter.Value).Returns('|');
+             configuration.Setup(x => x.LineHeaders.Header).Returns("H");
+             configuration.Setup(x => x.LineHeaders.Data).Returns("D");
+             configuration.Setup(x => x.LineHeaders.Footer).Returns("F");
+             parser = new LineParser(configuration.Object);
          }
 
          [Test]
          public void TestParseForNullInputShouldReturnEmptyArray()
          {
-             Assert.IsEmpty(parser.ParseWithNoLineType<TestLine>(null));
-             Assert.IsEmpty(parser.ParseWithLineType<TestLine>(null, LineType.Data));
+             Assert.IsEmpty(parser.Parse<TestLine>(null));
+             Assert.IsEmpty(parser.Parse<TestLine>(null, LineType.Data));
          }
 
          [Test]
@@ -38,19 +38,20 @@ namespace Ninja.FileUtil.Tests.Parser
                  "D|Bob Marley|True",
                  "D|John Walsh|False"
              };
-             var prsed = parser.ParseWithLineType<TestLine>(lines, LineType.Data);
+
+             var parsed = parser.Parse<TestLine>(lines, LineType.Data);
              
-             Assert.That(prsed.Length, Is.EqualTo(2));
+             Assert.That(parsed.Length, Is.EqualTo(2));
 
-             Assert.That(prsed[0].Name, Is.EqualTo("Bob Marley"));
-             Assert.That(prsed[0].IsMember, Is.EqualTo(true));
-             Assert.That(prsed[0].Type, Is.EqualTo(LineType.Data));
-             Assert.IsEmpty(prsed[0].Errors);
+             Assert.That(parsed[0].Name, Is.EqualTo("Bob Marley"));
+             Assert.That(parsed[0].IsMember, Is.EqualTo(true));
+             Assert.That(parsed[0].Type, Is.EqualTo(LineType.Data));
+             Assert.IsEmpty(parsed[0].Errors);
 
-             Assert.That(prsed[1].Name, Is.EqualTo("John Walsh"));
-             Assert.That(prsed[1].IsMember, Is.EqualTo(false));
-             Assert.That(prsed[1].Type, Is.EqualTo(LineType.Data));
-             Assert.IsEmpty(prsed[1].Errors);
+             Assert.That(parsed[1].Name, Is.EqualTo("John Walsh"));
+             Assert.That(parsed[1].IsMember, Is.EqualTo(false));
+             Assert.That(parsed[1].Type, Is.EqualTo(LineType.Data));
+             Assert.IsEmpty(parsed[1].Errors);
          }
 
          [Test]
@@ -61,7 +62,7 @@ namespace Ninja.FileUtil.Tests.Parser
                  "Bob Marley|True",
                  "John Walsh|False"
              };
-             var prsed = parser.ParseWithNoLineType<TestLine>(lines);
+             var prsed = parser.Parse<TestLine>(lines);
 
              Assert.That(prsed.Length, Is.EqualTo(2));
 
@@ -82,24 +83,23 @@ namespace Ninja.FileUtil.Tests.Parser
          [TestCase("H|hbtrb|ej ef|fer|rc |", true)]
          public void TestParseForInvalidInputShouldReturnError(string line, bool hasLineType)
          {
-             if (!hasLineType) parser = new LineParser(new TestFullConfig('|').Delimiter);
+             if (!hasLineType) parser = new LineParser(configuration.Object);
 
              var result = hasLineType
-                 ? parser.ParseWithNoLineType<TestLine>(new[] {line})
-                 : parser.ParseWithLineType<TestLine>(new[] {line}, LineType.Header);
+                 ? parser.Parse<TestLine>(new[] {line})
+                 : parser.Parse<TestLine>(new[] {line}, LineType.Header);
 
              Assert.IsNotEmpty(result[0].Errors);
          }
 
-         [Test]
+        [Test]
         public void TestParseForInvalidFileLineWithNoColumnAttributesShouldReturnError()
         {
-
-            var result = parser.ParseWithLineType<InvalidTestLine>(new[] { "edndx|medmd" }, LineType.Data);
+            var result = parser.Parse<InvalidTestLine>(new[] { "D|edndx|medmd" }, LineType.Data);
 
             Assert.IsNotEmpty(result[0].Errors);
 
-            result = parser.ParseWithNoLineType<InvalidTestLine>(new[] { "edndx|medmd" });
+            result = parser.Parse<InvalidTestLine>(new[] { "edndx|medmd" });
 
             Assert.IsNotEmpty(result[0].Errors);
         }

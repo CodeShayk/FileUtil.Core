@@ -12,7 +12,7 @@ namespace Ninja.FileUtil.Tests.Engine.MultiDelimited
         private Mock<IFileProvider> provider;
         private Mock<IParserSettings> configuration;
         private Mock<IDelimiter> delimiter;
-        private Engine<HeaderLine, DataLine, FooterLine> engine;
+        private FileUtil.Engine engine;
 
         [SetUp]
         public void Setup()
@@ -26,13 +26,13 @@ namespace Ninja.FileUtil.Tests.Engine.MultiDelimited
             configuration.Setup(x => x.LineHeaders.Data).Returns("D");
             configuration.Setup(x => x.LineHeaders.Footer).Returns("F");
 
-            engine = new Engine<HeaderLine, DataLine, FooterLine>(configuration.Object, provider.Object);
+            engine = new FileUtil.Engine(configuration.Object, provider.Object);
         }
 
         [Test]
         public void TestGetFilesForNoFileFromProviderShouldReturnEmptyCollection()
         {
-            Assert.IsEmpty(engine.GetFiles());
+            Assert.IsEmpty(engine.GetFiles<HeaderLine, DataLine, FooterLine>());
         }
 
         [Test]
@@ -49,7 +49,7 @@ namespace Ninja.FileUtil.Tests.Engine.MultiDelimited
 
             provider.Setup(x => x.GetFiles()).Returns(new[] { fileMeta });
 
-            var parsedfiles = engine.GetFiles();
+            var parsedfiles = engine.GetFiles<HeaderLine, DataLine, FooterLine>();
 
             Assert.IsNotEmpty(parsedfiles);
             Assert.That(parsedfiles[0].FileMeta.FileName, Is.EqualTo(fileMeta.FileName));
@@ -57,13 +57,13 @@ namespace Ninja.FileUtil.Tests.Engine.MultiDelimited
             Assert.That(parsedfiles[0].FileMeta.FileSize, Is.EqualTo(fileMeta.FileSize));
             Assert.That(parsedfiles[0].FileMeta.Lines, Is.EqualTo(fileMeta.Lines));
 
-            Assert.IsAssignableFrom<HeaderLine>(parsedfiles[0].Headers[0]);
+            Assert.IsAssignableFrom<HeaderLine>(parsedfiles[0].Header);
 
-            Assert.That(parsedfiles[0].Headers[0].Index, Is.EqualTo(0));
-            Assert.That(parsedfiles[0].Headers[0].Type, Is.EqualTo(LineType.Header));
-            Assert.IsEmpty(parsedfiles[0].Headers[0].Errors);
-            Assert.That(parsedfiles[0].Headers[0].Date, Is.EqualTo(date));
-            Assert.That(parsedfiles[0].Headers[0].Name, Is.EqualTo("Employee Status"));
+            Assert.That(parsedfiles[0].Header.Index, Is.EqualTo(0));
+            Assert.That(parsedfiles[0].Header.Type, Is.EqualTo(LineType.Header));
+            Assert.IsEmpty(parsedfiles[0].Header.Errors);
+            Assert.That(parsedfiles[0].Header.Date, Is.EqualTo(date));
+            Assert.That(parsedfiles[0].Header.Name, Is.EqualTo("Employee Status"));
           
             
             Assert.IsAssignableFrom<DataLine>(parsedfiles[0].Data[0]);
@@ -76,13 +76,13 @@ namespace Ninja.FileUtil.Tests.Engine.MultiDelimited
             Assert.That(parsedfiles[0].Data[0].Reference, Is.EqualTo("456RT4"));
             Assert.That(parsedfiles[0].Data[0].InService, Is.EqualTo(true));
            
-            Assert.IsAssignableFrom<FooterLine>(parsedfiles[0].Footers[0]);
+            Assert.IsAssignableFrom<FooterLine>(parsedfiles[0].Footer);
 
-            Assert.That(parsedfiles[0].Footers[0].Index, Is.EqualTo(0));
-            Assert.That(parsedfiles[0].Footers[0].Type, Is.EqualTo(LineType.Footer));
-            Assert.IsEmpty(parsedfiles[0].Footers[0].Errors);
+            Assert.That(parsedfiles[0].Footer.Index, Is.EqualTo(0));
+            Assert.That(parsedfiles[0].Footer.Type, Is.EqualTo(LineType.Footer));
+            Assert.IsEmpty(parsedfiles[0].Footer.Errors);
 
-            Assert.That(parsedfiles[0].Footers[0].TotalRecords, Is.EqualTo(1));
+            Assert.That(parsedfiles[0].Footer.TotalRecords, Is.EqualTo(1));
         }
     }
 }

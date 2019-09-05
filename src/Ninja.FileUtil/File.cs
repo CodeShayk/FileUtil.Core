@@ -22,17 +22,17 @@
         /// </summary>
         public FileMeta FileMeta { get; set; }
         /// <summary>
-        /// Parsed header lines.
+        /// Parsed header line.
         /// </summary>
-        public TH[] Headers { get; set; }
+        public TH Header { get; set; }
         /// <summary>
         /// Parsed data lines.
         /// </summary>
         public TD[] Data { get; set; }
         /// <summary>
-        /// Parsed footer lines.
+        /// Parsed footer line.
         /// </summary>
-        public TF[] Footers { get; set; }
+        public TF Footer { get; set; }
     }
 
     public class FileMeta
