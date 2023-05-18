@@ -23,10 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".misc", ".misc", "{8EDBC8F3
 	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
-		.travis.yml = .travis.yml
 		GitVersion.yml = GitVersion.yml
 		License.md = License.md
-		ms-icon-310x310.png = ms-icon-310x310.png
 		nuget.config = nuget.config
 		README.md = README.md
 	EndProjectSection

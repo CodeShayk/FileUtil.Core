@@ -159,4 +159,4 @@ jobs:
 
       - name: Step-03 Release to Nuget Org
         if: ${{ startsWith(github.head_ref, 'release/')}}
-        run: dotnet nuget push ${{env.working-directory}}/src/FileUtil.Core/bin/Release/*.nupkg --skip-duplicate --api-key ${{ env.nuget-token }} --source https://api.nuget.org/v3/index.json
+        run: dotnet nuget push ${{env.working-directory}}/src/Ninja.FileUtil/bin/Release/*.nupkg --skip-duplicate --api-key ${{ env.nuget-token }} --source https://api.nuget.org/v3/index.json
