@@ -1,21 +1,39 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <RepositoryType>Public</RepositoryType>
     <RepositoryUrl>https://github.com/NinjaRocks/FileUtil.Core</RepositoryUrl>
-    <PackageTags>csv fixed width file delimiter parser</PackageTags>
+    <PackageTags>csv fixed-width delimiter-file delimiter file-parser file parser</PackageTags>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>.Net Library to read from fixed width or delimiter separated file using strongly typed objects.
 Example: pipe delimited, csv, etc.</Description>
-    <PackageLicenseUrl>https://github.com/NinjaRocks/FileUtil.Core/blob/master/License.md</PackageLicenseUrl>
-    <NeutralLanguage>en-GB</NeutralLanguage>
+   <NeutralLanguage>en-GB</NeutralLanguage>
     <Company>Ninja Corp</Company>
-    <Authors>Najaf Shayk</Authors>
+    <Authors>Ninja Shayk</Authors>
     <PackageId>FixedWidth.FileParser</PackageId>
     <Product>Fixed Width File Parser</Product>
     <PackageProjectUrl>https://github.com/NinjaRocks/FileUtil.Core</PackageProjectUrl>
     <PackageIconUrl>https://1drv.ms/u/s!Aq_ncig7TU4551b5fzxOad-pDMfL</PackageIconUrl>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
+    <Title>FixedWidth.FileParser</Title>
+    <Copyright>© Copyright 2016 Ninja Sha!4h.</Copyright>
+    <PackageIcon>ninja-icon-16.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>License.md</PackageLicenseFile>
   </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\..\License.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\ninja-icon-16.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 </Project>
