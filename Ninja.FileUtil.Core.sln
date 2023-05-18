@@ -1,22 +1,35 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2050
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33712.159
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{4181FF50-7335-4293-8EE4-66E0C47C736E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ninja.FileUtil", "src\Ninja.FileUtil\Ninja.FileUtil.csproj", "{FD920B11-BA4F-4781-BD56-56CF362982CF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ninja.FileUtil.Tests", "test\Ninja.FileUtil.Tests\Ninja.FileUtil.Tests.csproj", "{95A1410C-6FB4-446D-A692-9BC018882298}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{D549CC35-5318-45B0-ACCD-F28C543E482C}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\CI-Build.yml = .github\workflows\CI-Build.yml
+		.github\workflows\codeql.yml = .github\workflows\codeql.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8A1A1535-2928-4313-9AFC-9CA1892426E3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F7C842B8-9D5C-4AF6-9F8B-779E1DEEEDC2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".misc", ".misc", "{8EDBC8F3-0169-4422-B44F-92AD9B9C8D5B}"
 	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		.travis.yml = .travis.yml
+		GitVersion.yml = GitVersion.yml
 		License.md = License.md
 		ms-icon-310x310.png = ms-icon-310x310.png
 		nuget.config = nuget.config
 		README.md = README.md
 	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ninja.FileUtil", "src\Ninja.FileUtil\Ninja.FileUtil.csproj", "{FD920B11-BA4F-4781-BD56-56CF362982CF}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ninja.FileUtil.Tests", "test\Ninja.FileUtil.Tests\Ninja.FileUtil.Tests.csproj", "{95A1410C-6FB4-446D-A692-9BC018882298}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +48,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FD920B11-BA4F-4781-BD56-56CF362982CF} = {8A1A1535-2928-4313-9AFC-9CA1892426E3}
+		{95A1410C-6FB4-446D-A692-9BC018882298} = {F7C842B8-9D5C-4AF6-9F8B-779E1DEEEDC2}
+		{D549CC35-5318-45B0-ACCD-F28C543E482C} = {4181FF50-7335-4293-8EE4-66E0C47C736E}
+		{8EDBC8F3-0169-4422-B44F-92AD9B9C8D5B} = {4181FF50-7335-4293-8EE4-66E0C47C736E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {96B5A6F7-D0A4-4A34-890A-59E971AC4E94}
