@@ -1,9 +1,8 @@
 # FileUtil  
 [![NuGet version](https://badge.fury.io/nu/FileUtil.Core.svg)](https://badge.fury.io/nu/FileUtil.Core) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/NinjaRocks/FileUtil.Core/blob/master/License.md) [![CI](https://github.com/NinjaRocks/FileUtil.Core/actions/workflows/CI-Build.yml/badge.svg)](https://github.com/NinjaRocks/FileUtil.Core/actions/workflows/CI-Build.yml) [![GitHub Release](https://img.shields.io/github/v/release/ninjarocks/FileUtil.Core?logo=github&sort=semver)](https://github.com/ninjarocks/FileUtil.Core/releases/latest)
 [![CodeQL](https://github.com/NinjaRocks/FileUtil.Core/actions/workflows/codeql.yml/badge.svg)](https://github.com/NinjaRocks/FileUtil.Core/actions/workflows/codeql.yml) [![.Net Stardard](https://img.shields.io/badge/.Net%20Standard-2.1-blue)](https://dotnet.microsoft.com/en-us/download/dotnet/2.1)
-
-.Net Library to read from fixed width or delimiter separated file using strongly typed objects.
 -------------
+.Net Library to read from fixed width or delimiter separated file using strongly typed objects.
 
 
 **Fixed Width or Delimiter Separated File** 
