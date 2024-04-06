@@ -1,23 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <RepositoryType>Public</RepositoryType>
-    <RepositoryUrl>https://github.com/NinjaRocks/FileUtil.Core</RepositoryUrl>
+    <RepositoryUrl>https://github.com/TechNinjaLabs/FileUtil.Core</RepositoryUrl>
     <PackageTags>csv tsv fixed-width delimiter-file delimiter file-parser file parser</PackageTags>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>.Net Library to read from fixed width or delimiter separated file using strongly typed objects.
 Example: pipe delimited, csv, tsv, etc.</Description>
    <NeutralLanguage>en-GB</NeutralLanguage>
-    <Company>Ninja Corp</Company>
-    <Authors>Ninja Shayk</Authors>
+    <Company>Tech Ninja Labs</Company>
+    <Authors>Tech Ninja Labs</Authors>
     <PackageId>FixedWidth.FileParser</PackageId>
     <Product>Fixed Width File Parser</Product>
-    <PackageProjectUrl>https://github.com/NinjaRocks/FileUtil.Core</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/TechNinjaLabs/FileUtil.Core</PackageProjectUrl>
     <PackageIconUrl>https://1drv.ms/u/s!Aq_ncig7TU4551b5fzxOad-pDMfL</PackageIconUrl>
-    <Version>2.0.0</Version>
+    <Version>3.0.0</Version>
     <Title>FixedWidth.FileParser</Title>
-    <Copyright>© Copyright 2016 Ninja Sha!4h.</Copyright>
+    <Copyright>© Copyright 2024 Tech Ninja Labs.</Copyright>
     <PackageIcon>ninja-icon-16.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>License.md</PackageLicenseFile>
