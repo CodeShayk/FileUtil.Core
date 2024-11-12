@@ -32,7 +32,7 @@ In which case, each row has an identifier called as Line head to determine the t
 **FileUtil** can be used to parse both of the shown formats above. The line heads and data column delimiters (separators) are configurable as required per use case.
 
 ## Getting Started?
--------------
+
 ### i. Installation
 Install the latest version of FileUtil nuget package with command below. 
 
