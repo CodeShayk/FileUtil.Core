@@ -6,9 +6,9 @@
 [![Master-CodeQL](https://github.com/CodeShayk/FileUtil.Core/actions/workflows/Master-CodeQL.yml/badge.svg)](https://github.com/CodeShayk/FileUtil.Core/actions/workflows/Master-CodeQL.yml) 
 [![.Net 8.0](https://img.shields.io/badge/.Net-8.0-blue)](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 
--------------
-#### .Net Library to read from fixed width or delimiter separated file using strongly typed objects.
 
+#### .Net Library to read from fixed width or delimiter separated file using strongly typed objects.
+-------------
 
 **Fixed Width or Delimiter Separated File** 
 ------------------------------------------------------------------------
