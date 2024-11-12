@@ -6,6 +6,10 @@ name: Master-Build
 on:
   push:
     branches: [ "master" ]
+    paths-ignore:
+     - "**/*.md"
+     - "**/*.gitignore"
+     - "**/*.gitattributes"
 jobs:
   build:
     runs-on: ubuntu-latest
