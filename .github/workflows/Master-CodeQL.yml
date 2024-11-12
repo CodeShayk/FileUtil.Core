@@ -7,17 +7,13 @@
 # ******** NOTE ********
 # We have attempted to detect the languages in your repository. Please check
 # the `language` matrix defined below to confirm you have the correct set of
-# supported CodeQL languages.
+# supported CodeQL languages. 
 #
-name: "CodeQL"
+name: "Master-CodeQL"
 
 on:
-  pull_request:
-    types: [opened, reopened, edited, synchronize]
-    paths-ignore:
-    - "**/*.md"
-    - "**/*.gitignore"
-    - "**/*.gitattributes"
+  push:
+    branches: [ "master" ]
   schedule:
     - cron: '35 15 * * 2'
 

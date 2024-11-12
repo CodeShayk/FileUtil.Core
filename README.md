@@ -1,6 +1,10 @@
-# <img src="https://github.com/NinjaRocks/FileUtil.Core/blob/master/ninja-icon-16.png" alt="ninja" style="width:30px;"/> FileUtil v3.0.0
-[![NuGet version](https://badge.fury.io/nu/FixedWidth.FileParser.svg)](https://badge.fury.io/nu/FixedWidth.FileParser) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/NinjaRocks/FileUtil.Core/blob/master/License.md) [![CI](https://github.com/NinjaRocks/FileUtil.Core/actions/workflows/CI-Build.yml/badge.svg)](https://github.com/NinjaRocks/FileUtil.Core/actions/workflows/CI-Build.yml) [![GitHub Release](https://img.shields.io/github/v/release/ninjarocks/FileUtil.Core?logo=github&sort=semver)](https://github.com/ninjarocks/FileUtil.Core/releases/latest)
-[![CodeQL](https://github.com/NinjaRocks/FileUtil.Core/actions/workflows/codeql.yml/badge.svg)](https://github.com/NinjaRocks/FileUtil.Core/actions/workflows/codeql.yml) [![.Net](https://img.shields.io/badge/.Net%20-8.0-blue)](https://dotnet.microsoft.com/en-us/download/dotnet/8)
+# <img src="https://github.com/CodeShayk/FileUtil.Core/blob/master/Images/ninja-icon-16.png" alt="ninja" style="width:30px;"/> FileUtil.Core v1.0 
+[![NuGet version](https://badge.fury.io/nu/FileUtil.Core.svg)](https://badge.fury.io/nu/FileUtil.Core) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/CodeShayk/FileUtil.Core/blob/master/LICENSE.md) 
+[![Master-Build](https://github.com/CodeShayk/FileUtil.Core/actions/workflows/Master-Build.yml/badge.svg)](https://github.com/CodeShayk/FileUtil.Core/actions/workflows/Master-Build.yml) 
+[![GitHub Release](https://img.shields.io/github/v/release/CodeShayk/FileUtil.Core?logo=github&sort=semver)](https://github.com/CodeShayk/FileUtil.Core/releases/latest)
+[![Master-CodeQL](https://github.com/CodeShayk/FileUtil.Core/actions/workflows/Master-CodeQL.yml/badge.svg)](https://github.com/CodeShayk/FileUtil.Core/actions/workflows/Master-CodeQL.yml) 
+[![.Net 8.0](https://img.shields.io/badge/.Net-8.0-blue)](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+
 -------------
 #### .Net Library to read from fixed width or delimiter separated file using strongly typed objects.
 
@@ -42,7 +46,7 @@ NuGet\Install-Package FixedWidth.FileParser
 
 ### ii. Developer Guide
 
-Please read [Developer Guide](https://github.com/CodeShayk/FileUtil.Core/blob/master/DeveloperGuide.md) for details on how to implement ApiAggregator in your project.
+Please read [Developer Guide](https://github.com/CodeShayk/FileUtil.Core/blob/master/DeveloperGuide.md) for details on how to implement FileUtil.Core in your project.
 
 ## Support
 

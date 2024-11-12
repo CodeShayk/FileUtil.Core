@@ -1,4 +1,4 @@
-name: CI
+name: CI-Package-Release
 'on':
   pull_request:
     types: [opened, reopened, edited, synchronize]
@@ -154,9 +154,9 @@ jobs:
             -X POST \
             -H "Accept:application/vnd.github+json" \
             -H "Authorization:token ${{ env.github-token }}" \
-            https://api.github.com/techninjalabs/FileUtil.Core/releases \
+            https://api.github.com/codeshayk/FileUtil.Core/releases \
             -d '{"tag_name":v1.0.0,"target_commitish":"master","name":"FileUtil.Core","body":"","draft":false,"prerelease":false,"generate_release_notes":false}'
 
       - name: Step-03 Release to Nuget Org
         if: ${{ startsWith(github.head_ref, 'release/')}}
-        run: dotnet nuget push ${{env.working-directory}}/src/Ninja.FileUtil/bin/Release/*.nupkg --skip-duplicate --api-key ${{ env.nuget-token }} --source https://api.nuget.org/v3/index.json
+        run: dotnet nuget push ${{env.working-directory}}/src/FileUtil/bin/Release/*.nupkg --skip-duplicate --api-key ${{ env.nuget-token }} --source https://api.nuget.org/v3/index.json
