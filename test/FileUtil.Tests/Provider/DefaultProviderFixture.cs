@@ -28,7 +28,7 @@ namespace FileUtil.Tests.Provider
             fileHelper.Setup(x => x.GetPathLists(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns(Enumerable.Empty<string>().ToArray());
 
-            Assert.IsEmpty(provider.GetFiles());
+            Assert.That(provider.GetFiles(), Is.Empty);
         }
 
         [Test]
@@ -39,7 +39,7 @@ namespace FileUtil.Tests.Provider
 
             fileHelper.Setup(x => x.FileExists("path")).Returns(false);
 
-            Assert.IsEmpty(provider.GetFiles());
+            Assert.That(provider.GetFiles(), Is.Empty);
         }
 
         [Test]
@@ -51,7 +51,7 @@ namespace FileUtil.Tests.Provider
             fileHelper.Setup(x => x.FileExists(filePath)).Returns(true);
             fileHelper.Setup(x => x.ReadToLines(filePath)).Returns(new[] { "xyz, abc" });
 
-            Assert.IsNotEmpty(provider.GetFiles());
+            Assert.That(provider.GetFiles(), Is.Not.Empty);
             fileHelper.Verify(x => x.TryDeleteFile(It.IsAny<FileInfo>()), Times.Exactly(1));
             fileHelper.Verify(x => x.TryMoveFile(It.IsAny<FileInfo>(), It.IsAny<string>()), Times.Never());
             fileHelper.Verify(x => x.EnsureFolderExist(It.IsAny<string>()), Times.Never());
@@ -74,7 +74,7 @@ namespace FileUtil.Tests.Provider
             fileHelper.Setup(x => x.FileExists(filePath)).Returns(true);
             fileHelper.Setup(x => x.ReadToLines(filePath)).Returns(new[] { "xyz, abc" });
 
-            Assert.IsNotEmpty(provider.GetFiles());
+            Assert.That(provider.GetFiles(), Is.Not.Empty);
             fileHelper.Verify(x => x.TryDeleteFile(It.IsAny<FileInfo>()), Times.Exactly(2));
             fileHelper.Verify(x => x.TryMoveFile(It.IsAny<FileInfo>(), It.IsAny<string>()), Times.Exactly(1));
             fileHelper.Verify(x => x.EnsureFolderExist(It.IsAny<string>()), Times.Exactly(1));
