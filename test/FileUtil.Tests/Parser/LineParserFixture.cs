@@ -26,8 +26,8 @@ namespace FileUtil.Tests.Parser
         [Test]
         public void TestParseForNullInputShouldReturnEmptyArray()
         {
-            Assert.IsEmpty(parser.Parse<TestLine>(null));
-            Assert.IsEmpty(parser.Parse<TestLine>(null, LineType.Data));
+            Assert.That(parser.Parse<TestLine>(null), Is.Empty);
+            Assert.That(parser.Parse<TestLine>(null, LineType.Data), Is.Empty);
         }
 
         [Test]
@@ -46,12 +46,12 @@ namespace FileUtil.Tests.Parser
             Assert.That(parsed[0].Name, Is.EqualTo("Bob Marley"));
             Assert.That(parsed[0].IsMember, Is.EqualTo(true));
             Assert.That(parsed[0].Type, Is.EqualTo(LineType.Data));
-            Assert.IsEmpty(parsed[0].Errors);
+            Assert.That(parsed[0].Errors, Is.Empty);
 
             Assert.That(parsed[1].Name, Is.EqualTo("John Walsh"));
             Assert.That(parsed[1].IsMember, Is.EqualTo(false));
             Assert.That(parsed[1].Type, Is.EqualTo(LineType.Data));
-            Assert.IsEmpty(parsed[1].Errors);
+            Assert.That(parsed[1].Errors, Is.Empty);
         }
 
         [Test]
@@ -69,12 +69,12 @@ namespace FileUtil.Tests.Parser
             Assert.That(prsed[0].Name, Is.EqualTo("Bob Marley"));
             Assert.That(prsed[0].IsMember, Is.EqualTo(true));
             Assert.That(prsed[0].Type, Is.EqualTo(LineType.Data));
-            Assert.IsEmpty(prsed[0].Errors);
+            Assert.That(prsed[0].Errors, Is.Empty);
 
             Assert.That(prsed[1].Name, Is.EqualTo("John Walsh"));
             Assert.That(prsed[1].IsMember, Is.EqualTo(false));
             Assert.That(prsed[1].Type, Is.EqualTo(LineType.Data));
-            Assert.IsEmpty(prsed[1].Errors);
+            Assert.That(prsed[1].Errors, Is.Empty);
         }
 
         [TestCase("hbtrb", true)]
@@ -90,7 +90,7 @@ namespace FileUtil.Tests.Parser
                 ? parser.Parse<TestLine>(new[] { line })
                 : parser.Parse<TestLine>(new[] { line }, LineType.Header);
 
-            Assert.IsNotEmpty(result[0].Errors);
+            Assert.That(result[0].Errors, Is.Not.Empty);
         }
 
         [Test]
@@ -98,11 +98,11 @@ namespace FileUtil.Tests.Parser
         {
             var result = parser.Parse<InvalidTestLine>(new[] { "D|edndx|medmd" }, LineType.Data);
 
-            Assert.IsNotEmpty(result[0].Errors);
+            Assert.That(result[0].Errors, Is.Not.Empty);
 
             result = parser.Parse<InvalidTestLine>(new[] { "edndx|medmd" });
 
-            Assert.IsNotEmpty(result[0].Errors);
+            Assert.That(result[0].Errors, Is.Not.Empty);
         }
     }
 }
