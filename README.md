@@ -1,14 +1,13 @@
-# <img src="https://github.com/NinjaRocks/FileUtil.Core/blob/master/ninja-icon-16.png" alt="ninja" style="width:30px;"/> FileUtil v3.0.0
-[![NuGet version](https://badge.fury.io/nu/FixedWidth.FileParser.svg)](https://badge.fury.io/nu/FixedWidth.FileParser)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/CodeShayk/FileUtil.Core/blob/master/LICENSE.md) 
+# <img src="https://github.com/CodeShayk/FileUtil.Core/blob/master/Images/ninja-icon-16.png" alt="ninja" style="width:30px;"/> FileUtil.Core v4.0.0 
+[![NuGet version](https://badge.fury.io/nu/FixedWidth.FileParser.svg)](https://badge.fury.io/nu/FixedWidth.FileParser) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/CodeShayk/FileUtil.Core/blob/master/LICENSE.md) 
 [![Master-Build](https://github.com/CodeShayk/FileUtil.Core/actions/workflows/Master-Build.yml/badge.svg)](https://github.com/CodeShayk/FileUtil.Core/actions/workflows/Master-Build.yml) 
 [![GitHub Release](https://img.shields.io/github/v/release/CodeShayk/FileUtil.Core?logo=github&sort=semver)](https://github.com/CodeShayk/FileUtil.Core/releases/latest)
 [![Master-CodeQL](https://github.com/CodeShayk/FileUtil.Core/actions/workflows/Master-CodeQL.yml/badge.svg)](https://github.com/CodeShayk/FileUtil.Core/actions/workflows/Master-CodeQL.yml) 
 [![.Net 8.0](https://img.shields.io/badge/.Net-8.0-blue)](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
 
-
-#### .Net Library to read from fixed width or delimiter separated file using strongly typed objects.
 -------------
+#### .Net Library to read from fixed width or delimiter separated file using strongly typed objects.
+
 
 **Fixed Width or Delimiter Separated File** 
 ------------------------------------------------------------------------
@@ -47,7 +46,7 @@ NuGet\Install-Package FixedWidth.FileParser
 
 ### ii. Developer Guide
 
-Please read [Developer Guide](https://github.com/CodeShayk/FileUtil.Core/blob/master/DeveloperGuide.md) for details on how to implement ApiAggregator in your project.
+Please read [Developer Guide](https://github.com/CodeShayk/FileUtil.Core/blob/master/DeveloperGuide.md) for details on how to implement FileUtil.Core in your project.
 
 ## Support
 
@@ -58,9 +57,10 @@ If you are having problems, please let me know by [raising a new issue](https://
 This project is licensed with the [MIT license](LICENSE).
 
 ## Version History
-The main branch is now on .NET 8.0. The following previous versions are available:
+The main branch is now on .NET 9.0. The following previous versions are available:
 | Version  | Release Notes |
 | -------- | --------|
+| [`v4.0.0`](https://github.com/CodeShayk/FileUtil.Core/tree/v4.0.0) |  [Notes](https://github.com/CodeShayk/FileUtil.Core/releases/tag/v4.0.0) |
 | [`v3.0.0`](https://github.com/CodeShayk/FileUtil.Core/tree/v3.0.0) |  [Notes](https://github.com/CodeShayk/FileUtil.Core/releases/tag/v3.0.0) |
 | [`v2.0.0`](https://github.com/CodeShayk/FileUtil.Core/tree/v2.0.0) |  [Notes](https://github.com/CodeShayk/FileUtil.Core/releases/tag/v2.0.0) |
 | [`v1.0.0`](https://github.com/CodeShayk/FileUtil.Core/tree/v1.0.0) |  [Notes](https://github.com/CodeShayk/FileUtil.Core/releases/tag/v1.0.0) |
