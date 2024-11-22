@@ -3,7 +3,7 @@
 [![Master-Build](https://github.com/CodeShayk/FileUtil.Core/actions/workflows/Master-Build.yml/badge.svg)](https://github.com/CodeShayk/FileUtil.Core/actions/workflows/Master-Build.yml) 
 [![GitHub Release](https://img.shields.io/github/v/release/CodeShayk/FileUtil.Core?logo=github&sort=semver)](https://github.com/CodeShayk/FileUtil.Core/releases/latest)
 [![Master-CodeQL](https://github.com/CodeShayk/FileUtil.Core/actions/workflows/Master-CodeQL.yml/badge.svg)](https://github.com/CodeShayk/FileUtil.Core/actions/workflows/Master-CodeQL.yml) 
-[![.Net 8.0](https://img.shields.io/badge/.Net-8.0-blue)](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+[![.Net 9.0](https://img.shields.io/badge/.Net-9.0-blue)](https://dotnet.microsoft.com/en-us/download/dotnet/9.0)
 
 -------------
 #### .Net Library to read from fixed width or delimiter separated file using strongly typed objects.
