@@ -15,9 +15,9 @@ Example: pipe delimited, csv, tsv, etc.</Description>
     <Product>Fixed Width File Parser</Product>
     <PackageProjectUrl>https://github.com/CodeShayk/FileUtil.Core/wiki</PackageProjectUrl>
     <PackageIconUrl>https://1drv.ms/u/s!Aq_ncig7TU4551b5fzxOad-pDMfL</PackageIconUrl>
-    <Version>4.0.0</Version>
+    <Version>5.0.0</Version>
     <Title>FixedWidth.FileParser</Title>
-    <Copyright>© Copyright 2024 Code Shayk.</Copyright>
+    <Copyright>© Copyright 2025 Code Shayk.</Copyright>
     <PackageIcon>ninja-icon-16.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>License.md</PackageLicenseFile>
