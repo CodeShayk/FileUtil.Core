@@ -3,12 +3,14 @@ using parsley;
 
 namespace FileUtil
 {
-    public abstract class FileLine : IFileLine
+    public abstract class PrefixedFileLine : IFileLine
     {
-        protected FileLine()
+        protected PrefixedFileLine()
         {
             Errors = new List<string>();
         }
+
+        public abstract string Prefix { get; }
 
         public int Index { get; set; }
         public IList<string> Errors { get; set; }

@@ -41,4 +41,7 @@ Example: pipe delimited, csv, tsv, etc.</Description>
       <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Parsley.Net" Version="1.0.0" />
+  </ItemGroup>
 </Project>

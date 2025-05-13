@@ -27,7 +27,7 @@ namespace FileUtil.Tests.Engine.SingleDelimited
         [Test]
         public void TestGetFilesForNoFileFromProviderShouldReturnEmptyCollection()
         {
-            Assert.That(engine.GetFiles<SingleLine>(), Is.Empty);
+            Assert.That(engine.GetFiles<RecordLine>(), Is.Empty);
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace FileUtil.Tests.Engine.SingleDelimited
 
             provider.Setup(x => x.GetFiles()).Returns(new[] { fileMeta });
 
-            var parsedfiles = engine.GetFiles<SingleLine>();
+            var parsedfiles = engine.GetFiles<RecordLine>();
 
             Assert.That(parsedfiles, Is.Not.Empty);
             Assert.That(parsedfiles[0].FileMeta.FileName, Is.EqualTo(fileMeta.FileName));
@@ -51,18 +51,16 @@ namespace FileUtil.Tests.Engine.SingleDelimited
             Assert.That(parsedfiles[0].FileMeta.FileSize, Is.EqualTo(fileMeta.FileSize));
             Assert.That(parsedfiles[0].FileMeta.Lines, Is.EqualTo(fileMeta.Lines));
 
-            Assert.That(parsedfiles[0].Data[0], Is.AssignableFrom<SingleLine>());
-            Assert.That(parsedfiles[0].Data[1], Is.AssignableFrom<SingleLine>());
+            Assert.That(parsedfiles[0].Data[0], Is.AssignableFrom<RecordLine>());
+            Assert.That(parsedfiles[0].Data[1], Is.AssignableFrom<RecordLine>());
 
             Assert.That(parsedfiles[0].Data[0].Index, Is.EqualTo(0));
-            Assert.That(parsedfiles[0].Data[0].Type, Is.EqualTo(LineType.Data));
             Assert.That(parsedfiles[0].Data[0].Errors, Is.Empty);
 
             Assert.That(parsedfiles[0].Data[0].Name, Is.EqualTo("Jack Marias"));
             Assert.That(parsedfiles[0].Data[0].IsMember, Is.EqualTo(false));
 
             Assert.That(parsedfiles[0].Data[1].Index, Is.EqualTo(1));
-            Assert.That(parsedfiles[0].Data[1].Type, Is.EqualTo(LineType.Data));
             Assert.That(parsedfiles[0].Data[0].Errors, Is.Empty);
 
             Assert.That(parsedfiles[0].Data[1].Name, Is.EqualTo("Samuel Dias"));

@@ -1,21 +1,21 @@
+using System.Collections.Generic;
 using System.Linq;
 using FileUtil.Configuration;
-using FileUtil.Parser;
-using FileUtil.Parser.Impl;
 using FileUtil.Provider;
 using FileUtil.Provider.Impl;
+using parsley;
 
 namespace FileUtil
 {
     public class Engine
     {
         private readonly IFileProvider fileProvider;
-        private readonly ILineParser lineParser;
+        private readonly IParser parser;
 
-        internal Engine(ILineParser lineParser, IFileProvider fileProvider)
+        internal Engine(IParser parser, IFileProvider fileProvider)
         {
             this.fileProvider = fileProvider;
-            this.lineParser = lineParser;
+            this.parser = parser;
         }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace FileUtil
         /// </remarks>
         /// <param name="settings">Configuration settings for default file provider and parser</param>
         public Engine(IConfigSettings settings)
-            : this(new LineParser(settings.ParserSettings), new DefaulProvider(settings.ProviderSettings, new FileHelper()))
+            : this(new Parser((settings?.ParserSettings?.Delimiter?.Value).GetValueOrDefault(',')), new DefaulProvider(settings.ProviderSettings, new FileHelper()))
         {
         }
 
@@ -36,7 +36,7 @@ namespace FileUtil
         /// <param name="parserSettings">Parser settings.</param>
         /// <param name="fileProvider">Custom file provider instance.</param>
         public Engine(IParserSettings parserSettings, IFileProvider fileProvider)
-            : this(new LineParser(parserSettings), fileProvider)
+            : this(new Parser((parserSettings?.Delimiter?.Value).GetValueOrDefault(',')), fileProvider)
         {
         }
 
@@ -64,9 +64,8 @@ namespace FileUtil
                     Lines = file.Lines,
                 },
 
-                Data = lineParser.Parse<T>(file.Lines)
-            })
-                .ToArray();
+                Data = parser.Parse<T>(file.Lines)
+            }).ToArray();
         }
 
         /// <summary>
@@ -88,14 +87,18 @@ namespace FileUtil
         /// Collection of Files each parsed with header, footer and data typed arrays
         /// </returns>
         public File<TH, TD, TF>[] GetFiles<TH, TD, TF>()
-            where TH : FileLine, new()
-            where TD : FileLine, new()
-            where TF : FileLine, new()
+            where TH : PrefixedFileLine, new()
+            where TD : PrefixedFileLine, new()
+            where TF : PrefixedFileLine, new()
         {
             var files = fileProvider.GetFiles();
 
             return files.Select(file =>
             {
+                var headerLines = file.Lines.Where(line => line.StartsWith(new TH().Prefix)).ToArray();
+                var footerLines = file.Lines.Where(line => line.StartsWith(new TF().Prefix)).ToArray();
+                var dataLines = file.Lines.Where(line => line.StartsWith(new TD().Prefix)).ToArray();
+
                 var parsed = new File<TH, TD, TF>
                 {
                     FileMeta = new FileMeta
@@ -106,9 +109,9 @@ namespace FileUtil
                         Lines = file.Lines,
                     },
 
-                    Header = lineParser.Parse<TH>(file.Lines, LineType.Header).FirstOrDefault(),
-                    Footer = lineParser.Parse<TF>(file.Lines, LineType.Footer).FirstOrDefault(),
-                    Data = lineParser.Parse<TD>(file.Lines, LineType.Data)
+                    Header = parser.Parse<TH>(headerLines).FirstOrDefault(),
+                    Data = parser.Parse<TD>(dataLines).ToArray(),
+                    Footer = parser.Parse<TF>(footerLines).FirstOrDefault()
                 };
 
                 return parsed;

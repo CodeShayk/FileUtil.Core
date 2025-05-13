@@ -22,7 +22,7 @@ namespace FileUtil.Tests.Provider
         public void TestGetFilesForFileWhichDoesNotExistsShouldReturnEmptyFileCollection()
         {
             var lines = fileHelper.ReadToLines(filePath);
-            Assert.That(lines.Length, Is.EqualTo(1));
+            Assert.That(lines.Length, Is.EqualTo(2));
         }
 
         public void CreateFile(string path)

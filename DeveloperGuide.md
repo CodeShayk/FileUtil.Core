@@ -110,7 +110,7 @@ public class File<T> where T: FileLine
 -------------
 
 
-**Case 2:** Let us see how we can parse a delimiter separted file with header and footer rows.
+**Case 2:** Let us see how we can parse a delimiter separted file with prefixed header, data and footer rows.
 ------------------------------------------------------------------------
 
 **Note:** This file will have rows with line head to determine each row type. By default, the line heads are 'H' for header, 'D' for data and 'F' for footer respectively. all these line heads are configurable via the config. 
@@ -131,13 +131,7 @@ The configuration is the same as before. We can override the default line heads 
 ```
 {
     "configSettings":{
-        "parserSettings":{ "delimiter": { "value":"|"} ,
-                           "lineHeaders": { 
-                                "header":"H", 
-                                "footer":"F", 
-                                "data":"D" 
-                            }
-        },
+        "parserSettings":{ "delimiter": { "value":"|"} },
         "providerSettings":{
                         "folderPath":"C:work",
                         "fileNameFormat":"File*.txt",
@@ -154,21 +148,49 @@ The configuration is the same as before. We can override the default line heads 
 Like before we need a line class to map to each type of the row in the file
 ie one for the header, footer and data line respectively.
 
+However, this time we derive from `PrefixedFileLine` class instead of `FileLine` class.
+The `PrefixedFileLine` class has an extra property called `Prefix` which is used to determine the type of the line.
+The prefix is set to the first column of the row by default.
+
 We continue by creating two extra classes HeaderLine and FooterLine as follows.
 
-     public class Header : FileLine
-        {
-            [Column(0)]
-            public string Name { get; set; }
-            [Column(1)]
-            public DateTime Date { get; set; }
-        } 
+    public class Header : PrefixedFileLine
+    {
+        public override string Prefix => "H";
 
-     public class Footer : FileLine
-        {
-            [Column(0)]
-            public string FileRemarks { get; set; }
-        } 
+        [Column(0)]
+        public LineType Type { get; set; }
+        [Column(1)]
+        public string Name { get; set; }
+        [Column(2)]
+        public DateTime Date { get; set; }
+    }
+
+    public class Employee : PrefixedFileLine
+    {
+        public override string Prefix => "D";
+
+        [Column(0)]
+        public LineType Type { get; set; }
+        [Column(1)]
+        public string Title { get; set; }
+        [Column(2)]
+        public string Name { get; set; }
+        [Column(3)]
+        public string Sex { get; set; }
+        [Column(4, "London")]
+        public string Location { get; set; }
+    } 
+
+    public class Footer : FileLine
+    {
+        public override string Prefix => "F";
+
+        [Column(0)]
+        public LineType Type { get; set; }
+        [Column(1)]
+        public string FileRemarks { get; set; }
+    } 
 
 
 To parse the file you call the GetFiles() Method as follows -
