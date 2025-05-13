@@ -15,16 +15,21 @@ Example: pipe delimited, csv, tsv, etc.</Description>
     <Product>Fixed Width File Parser</Product>
     <PackageProjectUrl>https://github.com/CodeShayk/FileUtil.Core/wiki</PackageProjectUrl>
     <PackageIconUrl>https://1drv.ms/u/s!Aq_ncig7TU4551b5fzxOad-pDMfL</PackageIconUrl>
-    <Version>4.0.0</Version>
+    <Version>5.0.0</Version>
     <Title>FixedWidth.FileParser</Title>
-    <Copyright>© Copyright 2024 Code Shayk.</Copyright>
+    <Copyright>© Copyright 2025 Code Shayk.</Copyright>
     <PackageIcon>ninja-icon-16.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>License.md</PackageLicenseFile>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <IncludeSymbols>True</IncludeSymbols>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <PackageReleaseNotes>- Use Parsley.Net for parsing of files.</PackageReleaseNotes>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <Optimize>True</Optimize>
   </PropertyGroup>
   <ItemGroup>
@@ -40,5 +45,8 @@ Example: pipe delimited, csv, tsv, etc.</Description>
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Parsley.Net" Version="1.0.0" />
   </ItemGroup>
 </Project>

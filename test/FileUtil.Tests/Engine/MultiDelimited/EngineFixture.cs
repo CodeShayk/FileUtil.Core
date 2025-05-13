@@ -21,9 +21,6 @@ namespace FileUtil.Tests.Engine.MultiDelimited
             delimiter = new Mock<IDelimiter>();
             delimiter.Setup(x => x.Value).Returns('|');
             configuration.Setup(x => x.Delimiter).Returns(delimiter.Object);
-            configuration.Setup(x => x.LineHeaders.Header).Returns("H");
-            configuration.Setup(x => x.LineHeaders.Data).Returns("D");
-            configuration.Setup(x => x.LineHeaders.Footer).Returns("F");
 
             engine = new FileUtil.Engine(configuration.Object, provider.Object);
         }
@@ -35,7 +32,7 @@ namespace FileUtil.Tests.Engine.MultiDelimited
         }
 
         [Test]
-        public void TestGetFilesForFileReceivedFromProviderShouldReturnEmptyCollection()
+        public void TestGetFilesForFileReceivedFromProviderShouldReturnCorrectFileCollection()
         {
             var date = new DateTime(2016, 10, 22);
             var fileMeta = new FileMeta
@@ -59,7 +56,7 @@ namespace FileUtil.Tests.Engine.MultiDelimited
             Assert.That(parsedfiles[0].Header, Is.AssignableFrom<HeaderLine>());
 
             Assert.That(parsedfiles[0].Header.Index, Is.EqualTo(0));
-            Assert.That(parsedfiles[0].Header.Type, Is.EqualTo(LineType.Header));
+            Assert.That(parsedfiles[0].Header.Type, Is.EqualTo(LineType.H));
             Assert.That(parsedfiles[0].Header.Errors, Is.Empty);
             Assert.That(parsedfiles[0].Header.Date, Is.EqualTo(date));
             Assert.That(parsedfiles[0].Header.Name, Is.EqualTo("Employee Status"));
@@ -67,7 +64,7 @@ namespace FileUtil.Tests.Engine.MultiDelimited
             Assert.That(parsedfiles[0].Data[0], Is.AssignableFrom<DataLine>());
 
             Assert.That(parsedfiles[0].Data[0].Index, Is.EqualTo(0));
-            Assert.That(parsedfiles[0].Data[0].Type, Is.EqualTo(LineType.Data));
+            Assert.That(parsedfiles[0].Data[0].Type, Is.EqualTo(LineType.D));
             Assert.That(parsedfiles[0].Data[0].Errors, Is.Empty);
 
             Assert.That(parsedfiles[0].Data[0].Employee, Is.EqualTo("John Walsh"));
@@ -77,7 +74,7 @@ namespace FileUtil.Tests.Engine.MultiDelimited
             Assert.That(parsedfiles[0].Footer, Is.AssignableFrom<FooterLine>());
 
             Assert.That(parsedfiles[0].Footer.Index, Is.EqualTo(0));
-            Assert.That(parsedfiles[0].Footer.Type, Is.EqualTo(LineType.Footer));
+            Assert.That(parsedfiles[0].Footer.Type, Is.EqualTo(LineType.F));
             Assert.That(parsedfiles[0].Footer.Errors, Is.Empty);
 
             Assert.That(parsedfiles[0].Footer.TotalRecords, Is.EqualTo(1));

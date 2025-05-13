@@ -1,4 +1,4 @@
-# <img src="https://github.com/CodeShayk/FileUtil.Core/blob/master/ninja-icon-16.png" alt="ninja" style="width:30px;"/> FileUtil.Core v4.0.0 
+# <img src="https://github.com/CodeShayk/FileUtil.Core/blob/master/ninja-icon-16.png" alt="ninja" style="width:30px;"/> FileUtil.Core v5.0.0 
 [![NuGet version](https://badge.fury.io/nu/FixedWidth.FileParser.svg)](https://badge.fury.io/nu/FixedWidth.FileParser) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/CodeShayk/FileUtil.Core/blob/master/LICENSE.md) 
 [![Master-Build](https://github.com/CodeShayk/FileUtil.Core/actions/workflows/Master-Build.yml/badge.svg)](https://github.com/CodeShayk/FileUtil.Core/actions/workflows/Master-Build.yml) 
 [![GitHub Release](https://img.shields.io/github/v/release/CodeShayk/FileUtil.Core?logo=github&sort=semver)](https://github.com/CodeShayk/FileUtil.Core/releases/latest)
@@ -60,6 +60,7 @@ This project is licensed with the [MIT license](LICENSE).
 The main branch is now on .NET 9.0. The following previous versions are available:
 | Version  | Release Notes |
 | -------- | --------|
+| [`v5.0.0`](https://github.com/CodeShayk/FileUtil.Core/tree/v5.0.0) |  [Notes](https://github.com/CodeShayk/FileUtil.Core/releases/tag/v5.0.0) |
 | [`v4.0.0`](https://github.com/CodeShayk/FileUtil.Core/tree/v4.0.0) |  [Notes](https://github.com/CodeShayk/FileUtil.Core/releases/tag/v4.0.0) |
 | [`v3.0.0`](https://github.com/CodeShayk/FileUtil.Core/tree/v3.0.0) |  [Notes](https://github.com/CodeShayk/FileUtil.Core/releases/tag/v3.0.0) |
 | [`v2.0.0`](https://github.com/CodeShayk/FileUtil.Core/tree/v2.0.0) |  [Notes](https://github.com/CodeShayk/FileUtil.Core/releases/tag/v2.0.0) |

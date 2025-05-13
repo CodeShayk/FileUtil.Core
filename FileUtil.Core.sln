@@ -11,8 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileUtil.Tests", "test\File
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{D549CC35-5318-45B0-ACCD-F28C543E482C}"
 	ProjectSection(SolutionItems) = preProject
-		.github\workflows\Master-Build.yml = .github\workflows\Master-Build.yml
 		.github\workflows\CI-Package-Release.yml = .github\workflows\CI-Package-Release.yml
+		.github\workflows\Master-Build.yml = .github\workflows\Master-Build.yml
 		.github\workflows\Master-CodeQL.yml = .github\workflows\Master-CodeQL.yml
 		.github\workflows\PR-CodeQL.yml = .github\workflows\PR-CodeQL.yml
 	EndProjectSection
@@ -25,6 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".misc", ".misc", "{8EDBC8F3
 	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
+		DeveloperGuide.md = DeveloperGuide.md
 		GitVersion.yml = GitVersion.yml
 		License.md = License.md
 		nuget.config = nuget.config

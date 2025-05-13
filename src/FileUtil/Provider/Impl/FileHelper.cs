@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.IO;
+using System.Reflection.PortableExecutable;
 
 namespace FileUtil.Provider.Impl
 {
@@ -37,6 +38,7 @@ namespace FileUtil.Provider.Impl
                 return false;
             }
         }
+
         public void EnsureFolderExist(string folderFullName)
         {
             if (!Directory.Exists(folderFullName))
@@ -57,9 +59,12 @@ namespace FileUtil.Provider.Impl
             var lines = new List<string>();
             using (var sr = new StreamReader(File.Open(path, FileMode.Open)))
             {
-                var line = sr.ReadLine();
-                if (line != null)
-                    lines.Add(line);
+                while (sr.Peek() != -1)
+                {
+                    var line = sr.ReadLine();
+                    if (line != null)
+                        lines.Add(line);
+                }
             }
 
             return lines.ToArray();
