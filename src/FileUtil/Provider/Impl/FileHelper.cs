@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection.PortableExecutable;
 
 namespace FileUtil.Provider.Impl
 {
