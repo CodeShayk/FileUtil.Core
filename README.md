@@ -59,9 +59,10 @@ If you are having problems, please let me know by [raising a new issue](https://
 This project is licensed with the [MIT license](LICENSE).
 
 ## Version History
-The main branch is now on .NET 9.0. The following previous versions are available:
+The main branch is now on .NET 10.0. The following previous versions are available:
 | Version  | Release Notes |
 | -------- | --------|
+| [`v5.1.0`](https://github.com/CodeShayk/FileUtil.Core/tree/v5.1.0) |  [Notes](https://github.com/CodeShayk/FileUtil.Core/releases/tag/v5.1.0) |
 | [`v5.0.0`](https://github.com/CodeShayk/FileUtil.Core/tree/v5.0.0) |  [Notes](https://github.com/CodeShayk/FileUtil.Core/releases/tag/v5.0.0) |
 | [`v4.0.0`](https://github.com/CodeShayk/FileUtil.Core/tree/v4.0.0) |  [Notes](https://github.com/CodeShayk/FileUtil.Core/releases/tag/v4.0.0) |
 | [`v3.0.0`](https://github.com/CodeShayk/FileUtil.Core/tree/v3.0.0) |  [Notes](https://github.com/CodeShayk/FileUtil.Core/releases/tag/v3.0.0) |
