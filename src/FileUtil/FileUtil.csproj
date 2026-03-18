@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net462;netstandard2.0;netstandard2.1;net9.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net9.0;net10.0</TargetFrameworks>
     <RepositoryType>Public</RepositoryType>
     <RepositoryUrl>https://github.com/CodeShayk/FileUtil.Core</RepositoryUrl>
     <PackageTags>csv tsv fixed-width delimiter-file delimiter file-parser file parser</PackageTags>
@@ -15,16 +15,16 @@ Example: pipe delimited, csv, tsv, etc.</Description>
     <Product>Fixed Width File Parser</Product>
     <PackageProjectUrl>https://github.com/CodeShayk/FileUtil.Core/wiki</PackageProjectUrl>
     <PackageIconUrl>https://1drv.ms/u/s!Aq_ncig7TU4551b5fzxOad-pDMfL</PackageIconUrl>
-    <Version>5.0.1</Version>
+    <Version>5.1.0</Version>
     <Title>FixedWidth.FileParser</Title>
-    <Copyright>© Copyright 2025 Code Shayk.</Copyright>
-    <PackageIcon>ninja-icon-16.png</PackageIcon>
+    <Copyright>© Copyright 2026 Code Shayk.</Copyright>
+    <PackageIcon>file-parser.jpg</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>License.md</PackageLicenseFile>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <IncludeSymbols>True</IncludeSymbols>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-    <PackageReleaseNotes>- Use Parsley.Net for parsing of files.</PackageReleaseNotes>
+    <PackageReleaseNotes>v5.1.0 - Targets .net 10 </PackageReleaseNotes>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <Optimize>True</Optimize>
@@ -37,7 +37,7 @@ Example: pipe delimited, csv, tsv, etc.</Description>
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <None Include="..\..\ninja-icon-16.png">
+    <None Include="..\..\images\file-parser.jpg">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
@@ -47,6 +47,6 @@ Example: pipe delimited, csv, tsv, etc.</Description>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Parsley.Net" Version="1.0.1" />
+    <PackageReference Include="Parsley.Net" Version="2.1.0" />
   </ItemGroup>
 </Project>
