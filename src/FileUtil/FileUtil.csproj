@@ -24,7 +24,7 @@ Example: pipe delimited, csv, tsv, etc.</Description>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <IncludeSymbols>True</IncludeSymbols>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-    <PackageReleaseNotes>- Use Parsley.Net for parsing of files.</PackageReleaseNotes>
+    <PackageReleaseNotes>v5.1.0 - Targets .net 10 </PackageReleaseNotes>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <Optimize>True</Optimize>
@@ -37,7 +37,7 @@ Example: pipe delimited, csv, tsv, etc.</Description>
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <None Include="..\..\file-parser.jpg">
+    <None Include="..\..\images\file-parser.jpg">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
